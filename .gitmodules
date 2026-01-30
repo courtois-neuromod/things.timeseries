@@ -1,0 +1,10 @@
+[submodule "sourcedata/things.fmriprep"]
+	path = sourcedata/things.fmriprep
+	url = git@github.com:courtois-neuromod/things.fmriprep.git
+	datalad-id = 81d8c126-b10f-4e8b-9eab-6825964c8552
+	datalad-url = git@github.com:courtois-neuromod/things.fmriprep.git
+[submodule "code/cneuromod_extract_tseries"]
+	path = code/cneuromod_extract_tseries
+	url = git@github.com:courtois-neuromod/cneuromod_extract_tseries.git
+	datalad-id = ae0100ab-db64-4559-80e2-f41fed3cc5f4
+	datalad-url = git@github.com:courtois-neuromod/cneuromod_extract_tseries.git

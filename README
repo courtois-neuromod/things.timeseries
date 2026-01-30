@@ -1,16 +1,41 @@
 <!-- vim: syntax=Markdown -->
-# Courtois-NeuroMod: [xxxx subdataset, fmriprep derivatives](https://github.com/courtois-neuromod/xxxxx.fmriprep) 
+# things.timeseries: a Courtois-NeuroMod subdataset 
+## fMRI timeseries derived from the things.fmriprep derivative dataset 
 
-The [Courtois project on Neural Modelling (Courtois NeuroMod)](https://www.cneuromod.ca/) aims at training artificial neural networks using extensive experimental data on individual human brain activity and behaviour.
+The [Courtois project on Neural Modelling (Courtois NeuroMod)](https://www.cneuromod.ca/) is assembling an extensive dataset of individual human brain activity and behavioural data.
 
-Participants performed task xxx while functional data being acquired in the MRI scanner . A extensive description can be found [here](https://docs.cneuromod.ca/en/latest/DATASETS.html#xxxx).
+The current subdataset is organized following the [brain imaging data structure (BIDS)](https://bids.neuroimaging.io/) (including extensions in development) and contains:
+- **fMRI timeseries extracted with a custom parcellation** that includes cortical, subcortical and cerebellar parcels. 
+- **grey matter masks** delineating the voxels included in the signal extraction.
+- a **masked parcellation atlas** for each subject. This atlas can be used to localize parcels and project statistics on brain volumes.
+- **voxel-wise fMRI timeseries** in MNI152NLin2009cAsym and T1w volumetric space extracted within a custom grey matter mask for each subject
 
-This subdataset is organized following the [brain imaging data structure (BIDS)](https://bids.neuroimaging.io/) (including extensions in development) and contains:
-- [x] [preprocessed neuroimaging data](https://docs.cneuromod.ca/en/latest/DERIVATIVES.html#fmriprep)
-- [ ] behavioral variables in event files
+Courtois NeuroMod data are [freely shared with the scientific community](https://docs.cneuromod.ca/en/latest/ACCESS.html) to advance research at the interface of neuroscience and artificial intelligence.
 
-*(unchecked are collected data which have not yet been integrated in the dataset)*
 
-Courtois NeuroMod data are [freely shared with the scientific community](https://docs.cneuromod.ca/en/latest/ACCESS.html) to advance research at the interface of neuroscience and artificial intelligence. Access to to the data is based on a registered access model, see the Courtois NeuroMod website for more information. Redistribution of data outside of the Courtois NeuroMod data bank is prohibited.
+-----------------
 
-## [Contributors](https://github.com/courtois-neuromod/xxxxx#contributors-)
+## Code
+
+fMRI timeseries are extracted with scripts from the ``cneuromod_extract_tseries`` library (https://github.com/courtois-neuromod/cneuromod_extract_tseries) installed as a submodule under ``./code``
+
+To extract a subject’s timeseries, run the following bash scripts (``run_extract_parcel.sh`` for parcel extraction, and ``run_extract_t1w.sh`` and ``run_extract_mni.sh`` for voxelwise extraction in native and MNI space, respectively), specifying the subject’s number.
+
+For example, to extract sub-01’s voxelwise signal in native space:
+```bash
+
+sbatch code/run_extract_t1w.sh  01
+```
+
+-----------------
+
+## File details
+
+Parcellations are extracted with a custom atlas that includes cortical parcels from Schaefer2018 (1000 parcels, 7 networks), subcortical parcels from Tian2020 (S3), and cerebellar parcels from Nettekoven2024 (Asym128). For each subject, this atlas is masked with an individual grey matter mask. The following files are saved per subject under ``sub-0*/func``:
+- ``sub-0*_task-things_space-{MNI152NLin2009cAsym, T1w}_label-GM_desc-indivBoldGMfromFS_mask.nii.gz``, the grey matter masks that delineate the brain voxels included in the timeseries extraction (in MNI and native space, respectively). For each subject, custom grey matter masks were derived from individual Freesurfer segmentation, and intersected with a functional mask derived from run-wise functional masks estimated with fmriprep for the Friends dataset. 
+- ``sub-0*_task-things_space-MNI152NLin2009cAsym_atlas-Schaefer2018TianS3NettekovenAsym_desc-1000Parcels7Networks50Subcort128Cereb_dseg.nii.gz``, the parcellation atlas masked with the subject’s grey matter mask in MNI space.
+- ``sub-0*_task-things_space-MNI152NLin2009cAsym_atlas-Schaefer2018TianS3NettekovenAsym_desc-1000Parcels7Networks50Subcort128Cereb_timeseries.h5``, the parcel timeseries. Run-wise timeseries are saved as 2D arrays nested per fMRI session in a .hdf5 file for each subject.  
+- ``sub-0*_task-things_space-{MNI152NLin2009cAsym, T1w}_atlas-Freesurfer_label-BoldGM_res-func_timeseries.h5``, the voxel-wise timeseries extracted within the subject’s custom grey matter mask in MNI and native space.
+- ``sub-0*_task-things_space-{MNI152NLin2009cAsym, T1w}_atlas-Freesurfer_label-BoldGM_res-func_mask.nii.gz``, the mask defining the voxels included in the voxel-wise timeseries in MNI and native space for each subject. *[For this particular pipeline, these masks are identical to the grey matter masks. The extraction scripts provide the option to intersect grey matter masks with a functional mask built from the dataset’s run-specific functional masks estimated with fmriprep. Here, we opted instead to pre-constrain the subject’s grey matter mask with a functional mask derived from the Friends dataset (the largest CNeuroMod dset) to facilitate voxel alignment and consistency across all CNeuroMod datasets]*.
+
+
