@@ -3,7 +3,6 @@
         "@language": "en",
         "@vocab": "http://schema.org/",
         "arrayShape": "cr:arrayShape",
-        "column": "cr:column",
         "dataType": "cr:dataType",
         "extract": "cr:extract",
         "field": "cr:field",
@@ -26,7 +25,7 @@
     "@type": "sc:Dataset",
     "name": "Things Timeseries",
     "conformsTo": "http://mlcommons.org/croissant/1.1",
-    "description": "A set of fMRI timeseries from four CNeuroMod subjects who completed a multi-session continuous image recognition task based on the THINGS stimulus images. Timeseries were extracted from preprocessed BOLD signal available in the things.fmriprep derivates dataset.",
+    "description": "A set of standardized, detrended, smoothed, masked and vectorized fMRI timeseries from four CNeuroMod subjects who completed a multi-session continuous image recognition task based on the THINGS stimulus images. Timeseries were extracted from preprocessed BOLD signal available in the things.fmriprep derivates dataset.",
     "license": "https://creativecommons.org/publicdomain/zero/1.0/",
     "url": "https://github.com/courtois-neuromod/things.timeseries",
     "creator": {
@@ -47,7 +46,7 @@
         {
             "@type": "cr:FileSet",
             "@id": "cneuromod26-files",
-            "name": "cneuromod26-files",
+            "name": "cneuromod26 files",
             "description": "Parent directory for all cneuromod2026 dataset files (timeseries, atlases and masks).",
             "containedIn": ["github-repo"],
             "includes": "timeseries/cneuromod2026/**"
@@ -56,7 +55,7 @@
             "@type": "cr:FileSet",
             "@id": "cneuromod26-timeseries-files",
             "name": "cneuromod26 nested BOLD timeseries",
-            "description": "BOLD timeseries standardized, detrended, smoothed, masked and vectorized using a custom 1134-parcel atlas that adds subcortical and cerebellar parcels to the schaefer1000 cortical parcels.",
+            "description": "BOLD timeseries extracted with a custom 1134-parcel atlas that complements the schaefer1000 cortical parcels with subcortical and cerebellar parcels.",
             "containedIn": ["cneuromod26-files"],
             "includes": "sub-0*/sub-0*_atlas-cneuromod26_desc-1134Parcels_timeseries.h5",
             "encodingFormat": "application/x-hdf5"           
@@ -82,7 +81,7 @@
         {
             "@type": "cr:FileSet",
             "@id": "schaefer1000-files",
-            "name": "schaefer1000-files",
+            "name": "schaefer1000 files",
             "description": "Parent directory for all schaefer1000 dataset files (timeseries, atlases and masks).",
             "containedIn": ["github-repo"],
             "includes": "timeseries/schaefer1000/**"
@@ -91,7 +90,7 @@
             "@type": "cr:FileSet",
             "@id": "schaefer1000-timeseries-files",
             "name": "schaefer1000 nested BOLD timeseries",
-            "description": "BOLD timeseries standardized, detrended, smoothed, masked and vectorized using the schaefer1000 cortical parcellation atlas (7 networks).",
+            "description": "BOLD timeseries extracted with the schaefer1000 cortical parcellation atlas (7 networks).",
             "containedIn": ["schaefer1000-files"],
             "includes": "sub-0*/sub-0*_atlas-Schaefer2018_desc-1000Parcels7Networks_timeseries.h5",
             "encodingFormat": "application/x-hdf5"           
@@ -109,7 +108,7 @@
             "@type": "cr:FileSet",
             "@id": "schaefer1000-mask-files",
             "name": "schaefer1000 grey matter masks",
-            "description": "3D binary masks used to select brain voxels to extract timeseries with the schaefer1000 parcellation atlas. Masks were based on the template MNI152NLin2009cAsym grey matter mask intersected with a functional mask.",
+            "description": "3D binary masks used to select brain voxels to extract timeseries with the schaefer1000 parcellation atlas. Masks were based on the template MNI152NLin2009cAsym grey matter mask intersected with a functional mask derived from the Friends dataset in each subject.",
             "containedIn": ["schaefer1000-files"],
             "includes": "sub-0*/sub-0*_label-GMfromTemplate_desc-indivFunc_mask.nii.gz",
             "encodingFormat": "application/x-gzipped"
@@ -117,7 +116,7 @@
         {
             "@type": "cr:FileSet",
             "@id": "voxel_mni-files",
-            "name": "voxel_mni-files",
+            "name": "voxel_mni files",
             "description": "Parent directory for all voxel_mni dataset files (timeseries, atlases and mask).",
             "containedIn": ["github-repo"],
             "includes": "timeseries/voxel_mni/**"
@@ -126,7 +125,7 @@
             "@type": "cr:FileSet",
             "@id": "voxel_mni-timeseries-files",
             "name": "voxel_mni nested BOLD timeseries",
-            "description": "Voxel-wise BOLD timeseries in MNI space. Signal was standardized, detrended, smoothed, masked and vectorized using a grey matter mask of the whole brain.",
+            "description": "Voxel-wise BOLD timeseries in MNI space. Signal was extracted within a grey matter mask of the whole brain.",
             "containedIn": ["voxel_mni-files"],
             "includes": "sub-0*/sub-0*_space-MNI152NLin2009cAsym_desc-voxelwise_timeseries.h5",
             "encodingFormat": "application/x-hdf5"           
@@ -143,7 +142,7 @@
         {
             "@type": "cr:FileSet",
             "@id": "voxel_native-files",
-            "name": "voxel_native-files",
+            "name": "voxel_native files",
             "description": "Parent directory for all voxel_native dataset files (timeseries, atlases and masks).",
             "containedIn": ["github-repo"],
             "includes": "timeseries/voxel_native/**"
@@ -152,7 +151,7 @@
             "@type": "cr:FileSet",
             "@id": "voxel_native-timeseries-files",
             "name": "voxel_native nested BOLD timeseries",
-            "description": "Voxel-wise BOLD timeseries in native subject space. Signal was standardized, detrended, smoothed, masked and vectorized using individual grey matter masks of the whole brain.",
+            "description": "Voxel-wise BOLD timeseries in native subject space. Signal was extracted within individual grey matter masks of the whole brain.",
             "containedIn": ["voxel_native-files"],
             "includes": "sub-0*/sub-0*_space-T1w_desc-voxelwise_timeseries.h5",
             "encodingFormat": "application/x-hdf5"           
@@ -184,7 +183,7 @@
                         "fileSet": { "@id": "cneuromod26-timeseries-files" },
                         "fileProperty": "fullpath",
                         "transform": {
-                            "regex": "sub-([0-9]+)"
+                            "regex": "sub-([0-6]+)"
                         }
                     }
                 },
@@ -219,7 +218,7 @@
                     "@type": "cr:Field",
                     "@id": "cneuromod26-recordset/atlas-nifti",
                     "name": "associated_atlas_file",
-                    "description": "The path to the 3D atlas NIfTI file corresponding to this subject.",
+                    "description": "The path to the NIfTI file corresponding to this subject's 3D atlas.",
                     "dataType": "sc:Text",
                     "references": {
                         "field": "cneuromod26-recordset/subject-id"
@@ -233,7 +232,7 @@
                     "@type": "cr:Field",
                     "@id": "cneuromod26-recordset/mask-nifti",
                     "name": "grey matter mask_file",
-                    "description": "The path to the 3D binary grey matter mask NIfTI file corresponding to this subject.",
+                    "description": "The path to the NIfTI file corresponding to this subject's 3D binary grey matter mask.",
                     "dataType": "sc:Text",
                     "references": {
                         "field": "cneuromod26-recordset/subject-id"
@@ -261,7 +260,7 @@
                         "fileSet": { "@id": "schaefer1000-timeseries-files" },
                         "fileProperty": "fullpath",
                         "transform": {
-                            "regex": "sub-([0-9]+)"
+                            "regex": "sub-([0-6]+)"
                         }
                     }
                 },
@@ -296,7 +295,7 @@
                     "@type": "cr:Field",
                     "@id": "schaefer1000-recordset/atlas-nifti",
                     "name": "associated_atlas_file",
-                    "description": "The path to the 3D atlas NIfTI file corresponding to this subject.",
+                    "description": "The path to the NIfTI file corresponding to this subject's 3D atlas.",
                     "dataType": "sc:Text",
                     "references": {
                         "field": "schaefer1000-recordset/subject-id"
@@ -310,7 +309,7 @@
                     "@type": "cr:Field",
                     "@id": "schaefer1000-recordset/mask-nifti",
                     "name": "grey matter mask_file",
-                    "description": "The path to the 3D binary grey matter mask NIfTI file corresponding to this subject.",
+                    "description": "The path to the NIfTI file corresponding to this subject's 3D binary grey matter mask.",
                     "dataType": "sc:Text",
                     "references": {
                         "field": "schaefer1000-recordset/subject-id"
@@ -338,7 +337,7 @@
                         "fileSet": { "@id": "voxel_mni-timeseries-files" },
                         "fileProperty": "fullpath",
                         "transform": {
-                            "regex": "sub-([0-9]+)"
+                            "regex": "sub-([0-6]+)"
                         }
                     }
                 },
@@ -361,7 +360,7 @@
                     "name": "run timeseries matrix",
                     "description": "The 2D floating-point timeseries array (timepoints, voxels) corresponding to the current HDF5 path.",
                     "dataType": "sc:Float",
-                    "arrayShape": "[-1, num_vox]",
+                    "arrayShape": "[-1, 197010]",
                     "source": {
                         "fileSet": { "@id": "voxel_mni-timeseries-files" },
                         "extract": {
@@ -373,7 +372,7 @@
                     "@type": "cr:Field",
                     "@id": "voxel_mni-recordset/mask-nifti",
                     "name": "grey matter mask_file",
-                    "description": "The path to the 3D binary grey matter mask NIfTI file corresponding to this dataset.",
+                    "description": "The path to the NIfTI file corresponding to this dataset's 3D binary grey matter mask.",
                     "dataType": "sc:Text",
                     "source": {
                         "fileSet": { "@id": "voxel_mni-mask-file" },
@@ -398,7 +397,7 @@
                         "fileSet": { "@id": "voxel_native-timeseries-files" },
                         "fileProperty": "fullpath",
                         "transform": {
-                            "regex": "sub-([0-9]+)"
+                            "regex": "sub-([0-6]+)"
                         }
                     }
                 },
@@ -433,7 +432,7 @@
                     "@type": "cr:Field",
                     "@id": "voxel_native-recordset/mask-nifti",
                     "name": "grey matter mask_file",
-                    "description": "The path to the 3D binary grey matter mask NIfTI file corresponding to this subject.",
+                    "description": "The path to the NIfTI file corresponding to this subject' 3D binary grey matter mask.",
                     "dataType": "sc:Text",
                     "references": {
                         "field": "voxel_native-recordset/subject-id"
