@@ -17,9 +17,9 @@ cd cneuromod_extract_tseries
 # launch job
 python -m timeseries.run dataset="things" parcellation="schaefer1000_algo" subject_list=["${1}"] output_dir="../../timeseries/schaefer1000" data_dir="../../sourcedata"
 
-mv ../../timeseries/schaefer1000/sub-${1}/func/sub-${1}_task-things_space-MNI152NLin2009cAsym_atlas-Schaefer18_desc-1000Parcels7Networks_dseg.nii.gz ../../timeseries/schaefer1000/sub-${1}/sub-${1}_task-things_space-MNI152NLin2009cAsym_atlas-Schaefer2018_desc-1000Parcels7Networks_dseg.nii.gz
+mv ../../timeseries/schaefer1000/sub-${1}/func/sub-${1}_task-things_space-MNI152NLin2009cAsym_atlas-Schaefer18_desc-1000Parcels7Networks_dseg.nii.gz ../../timeseries/schaefer1000/sub-${1}/sub-${1}_task-things_space-MNI152NLin2009cAsym_atlas-Schaefer18_desc-1000Parcels7Networks_dseg.nii.gz
 
-mv ../../timeseries/schaefer1000/sub-${1}/func/sub-${1}_task-things_space-MNI152NLin2009cAsym_atlas-Schaefer18_desc-1000Parcels7Networks_timeseries.h5 ../../timeseries/schaefer1000/sub-${1}/sub-${1}_task-things_space-MNI152NLin2009cAsym_atlas-Schaefer2018_desc-1000Parcels7Networks_timeseries.h5
+mv ../../timeseries/schaefer1000/sub-${1}/func/sub-${1}_task-things_space-MNI152NLin2009cAsym_atlas-Schaefer18_desc-1000Parcels7Networks_timeseries.h5 ../../timeseries/schaefer1000/sub-${1}/sub-${1}_task-things_space-MNI152NLin2009cAsym_atlas-Schaefer18_desc-1000Parcels7Networks_timeseries.h5
 
 mv ../../timeseries/schaefer1000/sub-${1}/func/sub-${1}_task-things_space-MNI152NLin2009cAsym_label-GM_desc-indivBoldGMfromAlgo_mask.nii.gz ../../timeseries/schaefer1000/sub-${1}/sub-${1}_task-things_space-MNI152NLin2009cAsym_label-GMfromTemplate_desc-indivFunc_mask.nii.gz
 
